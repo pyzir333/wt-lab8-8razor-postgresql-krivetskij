@@ -1,0 +1,84 @@
+﻿@page "{id:int}"
+@model wt_lab5_5razor_krivetskij.Pages.Patients.DetailsModel
+
+@{
+    ViewData["Title"] = "Карточка пациента";
+    var doctor = wt_lab5_5razor_krivetskij.Data.DoctorStore.Doctors
+        .FirstOrDefault(d => d.Id == Model.Patient!.DoctorId);
+}
+
+<div class="container py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold">Карточка пациента</h1>
+            <p class="text-muted mb-0">Информация о пациенте медцентра</p>
+        </div>
+
+        @if (Model.Patient!.IsActive)
+        {
+            <span class="badge bg-success fs-6">Активен</span>
+        }
+        else
+        {
+            <span class="badge bg-secondary fs-6">Неактивен</span>
+        }
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-primary text-white py-3">
+            <h4 class="mb-0">@Model.Patient.FullName</h4>
+        </div>
+
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <small class="text-muted">Номер пациента</small>
+                    <h5>@Model.Patient.Id</h5>
+                </div>
+
+                <div class="col-md-6">
+                    <small class="text-muted">Возраст</small>
+                    <h5>@Model.Patient.Age лет</h5>
+                </div>
+
+                <div class="col-md-6">
+                    <small class="text-muted">Лечащий врач</small>
+                    <h5>
+                        @(doctor != null
+                                                ? doctor.FullName
+                                                : Model.Patient.DoctorSpecialty)
+                    </h5>
+                    @if (doctor != null)
+                    {
+                        <span class="badge bg-info text-dark">@doctor.Specialty</span>
+                    }
+                </div>
+
+                <div class="col-md-6">
+                    <small class="text-muted">Дата приёма</small>
+                    <h5>@Model.Patient.AppointmentDate.ToString("dd.MM.yyyy")</h5>
+                </div>
+
+                <div class="col-12">
+                    <small class="text-muted">Диагноз / причина обращения</small>
+                    <div class="p-3 bg-light rounded">
+                        @(string.IsNullOrWhiteSpace(Model.Patient.Diagnosis)
+                                                ? "Не указан"
+                                                : Model.Patient.Diagnosis)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-white p-3">
+            <a asp-page="Edit" asp-route-id="@Model.Patient.Id"
+               class="btn btn-warning">
+                Изменить данные
+            </a>
+
+            <a asp-page="Index" class="btn btn-outline-secondary">
+                К списку пациентов
+            </a>
+        </div>
+    </div>
+</div>

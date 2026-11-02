@@ -1,0 +1,52 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Медцентр Кривецкого";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-3 fw-bold">
+            🩺 Медцентр Кривецкого
+        </h1>
+
+        <p class="lead mt-4">
+            Брат, если здоровье подводит — залетай к нам!
+            Тут своих не бросают, болячки на районе не уважают,
+            а каждый пациент уходит на стиле и с нормальным самочувствием.
+        </p>
+
+        <p class="fs-5">
+            Голова гудит, сердце шалит или просто пора провериться?
+            Не тяни резину — разберёмся по красоте.
+            Наши доктора знают своё дело, так что ты в надёжных руках.
+        </p>
+
+        <div class="mt-4">
+            <a asp-page="/Patients/Index"
+               class="btn btn-primary btn-lg me-2 mb-2">
+                🧑‍⚕️ К пациентам
+            </a>
+
+            <a asp-page="/Doctors/Index"
+               class="btn btn-outline-primary btn-lg mb-2">
+                👨‍⚕️ Наши доктора
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 mt-5">
+        <div class="card-body text-center p-4">
+            <h3 class="fw-bold">Наш девиз</h3>
+            <p class="fs-5 mb-0">
+                «Здоровье — тема серьёзная, поэтому лечимся по уму,
+                своих поддерживаем, а болячкам даём отворот поворот!»
+            </p>
+        </div>
+    </div>
+
+    <p class="text-center text-secondary mt-4">
+        Медцентр Кривецкого — за здоровье, уважение и движ без болезней 🤝
+    </p>
+</div>
