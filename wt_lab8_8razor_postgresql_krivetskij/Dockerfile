@@ -3,10 +3,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["wt_lab8_8razor_postgresql_krivetskij.csproj", "./"]
+COPY ["wt_lab8_8razor_postgresql_krivetskij/wt_lab8_8razor_postgresql_krivetskij.csproj", "./"]
 RUN dotnet restore "wt_lab8_8razor_postgresql_krivetskij.csproj"
 
-COPY . .
+COPY wt_lab8_8razor_postgresql_krivetskij/. .
 RUN dotnet publish "wt_lab8_8razor_postgresql_krivetskij.csproj" \
     -c Release \
     -o /app/publish \
