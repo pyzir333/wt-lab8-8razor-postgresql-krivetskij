@@ -1,0 +1,36 @@
+﻿@page "{id:int}"
+@model wt_lab8_8razor_postgresql_krivetskij.Pages.Doctors.DeleteModel
+
+@{
+    ViewData["Title"] = "Удаление врача";
+}
+
+<h1>Удаление врача</h1>
+
+<div class="alert alert-warning">
+    Вы действительно хотите удалить этого врача?
+</div>
+
+@if (Model.Doctor != null)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Doctor.FullName</h5>
+            <p><strong>Специальность:</strong> @Model.Doctor.Specialty</p>
+            <p><strong>Стаж:</strong> @Model.Doctor.ExperienceYears лет</p>
+            <p><strong>Кабинет:</strong> @Model.Doctor.Office</p>
+        </div>
+    </div>
+
+    <form method="post">
+        <input type="hidden" asp-for="Doctor!.Id" />
+
+        <button type="submit" class="btn btn-danger">
+            Удалить врача
+        </button>
+
+        <a asp-page="Index" class="btn btn-secondary">
+            Отмена
+        </a>
+    </form>
+}

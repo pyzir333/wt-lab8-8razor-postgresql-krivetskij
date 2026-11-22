@@ -1,0 +1,112 @@
+﻿@page
+@model wt_lab8_8razor_postgresql_krivetskij.Pages.Patients.CreateModel
+
+@{
+    ViewData["Title"] = "Добавление пациента";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h1 class="fw-bold">Добавление пациента</h1>
+                <p class="text-muted">
+                    Заполните информацию о новом пациенте
+                </p>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Patient.FullName"
+                                   class="form-label">ФИО пациента</label>
+                            <input asp-for="Patient.FullName"
+                                   class="form-control"
+                                   placeholder="Иванов Иван Иванович" />
+                            <span asp-validation-for="Patient.FullName"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Patient.Age"
+                                   class="form-label">Возраст</label>
+                            <input asp-for="Patient.Age"
+                                   type="number"
+                                   class="form-control"
+                                   min="1" max="120" />
+                            <span asp-validation-for="Patient.Age"
+                                  class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="Patient.DoctorId" class="form-label">
+                                Врач
+                            </label>
+
+                            <select asp-for="Patient.DoctorId" class="form-select">
+                                <option value="0">Выберите врача</option>
+                                @foreach (var doctor in Model.Doctors)
+                                {
+                                    <option value="@doctor.Id">
+                                        @doctor.FullName — @doctor.Specialty
+                                    </option>
+                                }
+                            </select>
+
+                            <span asp-validation-for="Patient.DoctorId"
+                                  class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="Patient.AppointmentDate"
+                                   class="form-label">Дата приёма</label>
+                            <input asp-for="Patient.AppointmentDate"
+                                   type="date"
+                                   class="form-control" />
+                            <span asp-validation-for="Patient.AppointmentDate"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Patient.Diagnosis"
+                                   class="form-label">Диагноз или цель обращения</label>
+                            <textarea asp-for="Patient.Diagnosis"
+                                      class="form-control"
+                                      rows="3"
+                                      placeholder="Введите диагноз или цель обращения"></textarea>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input asp-for="Patient.IsActive"
+                                   class="form-check-input" />
+                            <label asp-for="Patient.IsActive"
+                                   class="form-check-label">
+                                Активный пациент
+                            </label>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                Сохранить пациента
+                            </button>
+                            <a asp-page="Index"
+                               class="btn btn-outline-secondary">
+                                Отмена
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
