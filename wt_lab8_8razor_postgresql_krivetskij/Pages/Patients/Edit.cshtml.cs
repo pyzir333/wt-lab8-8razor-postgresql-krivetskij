@@ -78,7 +78,11 @@ namespace wt_lab8_8razor_postgresql_krivetskij.Pages.Patients
             existing.FullName = Patient.FullName;
             existing.Age = Patient.Age;
             existing.DoctorId = Patient.DoctorId;
-            existing.AppointmentDate = Patient.AppointmentDate;
+
+            existing.AppointmentDate = DateTime.SpecifyKind(
+                Patient.AppointmentDate,
+                DateTimeKind.Utc);
+
             existing.Diagnosis = Patient.Diagnosis;
             existing.IsActive = Patient.IsActive;
 
